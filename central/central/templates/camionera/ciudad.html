@@ -1,0 +1,22 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Ciudades{%endblock%}
+{%block Encabezado%}<center><h1>Ciudades<h1><center>{%endblock%}
+{%block contenido%}
+ 
+		{% for item in ciudades %}
+
+			<hr class="featurette-divider">
+		      <div class="row featurette">
+		        <div class="col-md-7">
+		          <h2 class="featurette-heading">{{item.nombre}} {{item.estado}}</h2>
+		          <p class="lead">
+
+		          </p>
+		        </div>
+		        <div class="col-md-5">
+		          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ item.imagen }}" alt="Generic placeholder image" width="250px" heigth="250px">
+		        </div>
+		      </div>
+      		<hr class="featurette-divider">
+		{% endfor %}
+{%endblock%}

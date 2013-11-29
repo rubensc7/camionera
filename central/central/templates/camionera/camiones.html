@@ -1,0 +1,21 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Camiones{%endblock%}
+  {%block Encabezado%}<center><h1>Camiones<h1><center>{%endblock%}
+{%block contenido%}
+ 
+
+	{% for item in cam %}
+		<hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><p>Matricula: {{item.matricula}}</p><p>Capacidad: {{item.capacidad}}</p><p>Clase: {{item.clase}}</p></h2>
+        </div>
+         <div class="col-md-5">
+          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ item.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+	{% endfor %}
+
+{%endblock%}

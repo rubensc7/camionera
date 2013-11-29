@@ -1,0 +1,10 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Agregar Chofer{%endblock%}
+{%block Encabezado%}<center><h1>Nuevo Chofer<h1><center>{%endblock%}
+{%block contenido%}
+	<form id = 'formulario' method = 'post' action = '' enctype="multipart/form-data"> 
+		{% csrf_token %}
+		{{formulario.as_p}}
+		<p><input class="btn btn-primary" type = 'submit' value = 'Confirmar'/></p>
+	</form>
+{%endblock%}

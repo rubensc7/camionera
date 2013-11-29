@@ -1,0 +1,42 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Viajes Disponibes{%endblock%}
+{%block Encabezado%}<center><h1>Viajes<h1><center>{%endblock%}
+{%block contenido%}
+
+		{% for item in viajes %}
+	<!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">{{item.ruta}} <span class="text-muted"><h4></h4></span></h2>
+          
+          <p class="lead">Salida: {{item.fechaSalida}}</p>
+          <p class="lead">Capacidad del autobus: {{item.camion.capacidad}}</p>
+          <p class="lead">Asientos Ocupados: {{item.contados}}</p>
+          	
+          	<p>Con paradas en:</p>
+            {%for item2 in paradas%}
+              {% if item2.ruta == item.ruta  %}
+              <li>{{item2.parada}}</li>
+              {% endif %}
+            {% endfor %}
+
+			<br>
+          	<p>
+              <input class = "btn btn-primary"  onclick=location.href='/reservarViaje/{{item.id}}/' value = "Reservar" type = "submit"  />
+              <input class = "btn btn-success"  onclick=location.href='/consultarViaje/{{item.id}}/' value = "Informacion" type = "submit"  />
+
+
+            </p>
+
+          </p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ item.ruta.origen.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ item.ruta.destino.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        </div>
+      </div>
+      <hr class="featurette-divider">
+      {% endfor %}
+{%endblock%}

@@ -1,0 +1,53 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Busquedas{%endblock%}
+  {%block Encabezado%}<center><h1>Busquedas<h1><center>{%endblock%}
+{%block contenido%}
+ 
+
+  <div class="col-xs-12 col-sm-9">
+
+
+
+              <h1>Buscar</h1>
+              <form action="." method="GET" enctype="multipart/form-data">
+                <label for="q">Buscar: </label>
+                <input type="text" name="q" value="{{ query|escape }}">
+                <input type="submit" value="Search">
+              </form>
+
+              {% if query %}
+                <h2>Resultados para "{{ query|escape }}":</h2>
+                {% if results %}
+                <ul>
+                  {% for item in results %}
+                   <!--<li>{{ item|escape }}</l1>-->
+                <hr class="featurette-divider">
+
+                        <div class="row featurette">
+                          <div class="col-md-5">
+                            <h2 class="featurette-heading">{{item.clave}} <span class="text-muted"><h4>Viaje: {{item.viaje}}</h4></span></h2>
+                            <p class="lead">
+                              Nombre: {{item.nombre}}
+                              Apellidos: {{item.apellidos}}
+                              <p><h4>Fecha de reservacion: {{item.fechaReservacon}}</h4></p>
+                              <p >Estado: {{item.status}}</p>
+                              <p >Fecha de abordo: {{item.fechaAbordar}}</p>
+
+                              {% if item.status == False %}
+                               <p><input class = "btn btn-primary "  onclick=location.href='/confirmarReservacion/{{item.id}}/' value = "Detalles" type = "submit"  /></p>
+                              {%endif%}
+                          </div>
+                          <div class="col-md-7">
+                            <img class="featurette-image img-responsive img-circle" src="{{MEDIA_URL}}{{ item.viaje.ruta.imagen }}" alt="Generic placeholder image" width="300px" heigth="300px">
+                          </div>
+                        </div>
+
+                <hr class="featurette-divider">
+                  {% endfor %}
+                </ul>
+                {%else%}
+                  <p>Resultados no encontrados</p>
+                {% endif %}
+              {% endif %}
+  </div><!--/span-->
+{% endblock contenido%}

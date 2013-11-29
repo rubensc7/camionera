@@ -1,0 +1,27 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Abordar{%endblock%}
+{%block Encabezado%}<center><h1>Confirmar reservacion<h1><center>{%endblock%}
+{%block contenido%}
+ 
+<hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><p>Nombre: {{res.nombre}} {{res.apellidos}}</p><p>Viaje: {{res.viaje}}</p><p>clave: {{res.clave}}</p></h2>
+          <br>
+          <br>
+          <form id = 'formulario' method = 'post' action = '' enctype="multipart/form-data"> 
+          {% csrf_token %}
+          {{formulario.as_p}}
+          <p><input class="btn btn-primary" type = 'submit' value = 'Aceptar'/></p>
+        </form>
+               
+        </div>
+         <div class="col-md-5">
+          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ res.viaje.ruta.destino.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        </div>
+      </div>
+
+<hr class="featurette-divider">
+		
+
+{%endblock%}

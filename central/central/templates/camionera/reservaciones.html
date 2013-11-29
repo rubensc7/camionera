@@ -1,0 +1,29 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Reservaciones{%endblock%}
+  {%block Encabezado%}<center><h1>Reservaciones<h1><center>{%endblock%}
+{%block contenido%}
+ 
+
+	{% for item in reserv %}
+		<hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><p>Clave: {{item.clave}}</p><p>Viaje: {{item.viaje}}</p></h2>
+          <p>Nombre: {{item.nombre}}</p><p>Apellidos: {{item.apellidos}}</p><p>Se reservo el: {{item.fechaReservacion}}</p><p>Abordar el: {{item.fechaAbordar}}</p>
+
+          {% if item.status == False%}
+            <p>Estado de la reservacion: Pendiente</p>
+          {%else%}
+            <p>Estado de la reservacion: Confirmada</p>
+          {%endif%}
+
+          <p><input class = "btn btn-primary"  onclick=location.href='/confirmarReservacion/{{item.id}}/' value = "Confirmar" type = "submit"  /></p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ item.viaje.ruta.destino.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        </div>
+      </div>
+      <hr class="featurette-divider">
+	{% endfor %}
+
+{%endblock%}

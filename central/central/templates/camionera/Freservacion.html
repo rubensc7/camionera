@@ -1,0 +1,54 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Reservaciones{%endblock%}
+{%block Encabezado%}<center><h1>Reservaciones<h1><center>{%endblock%}
+{%block contenido%}
+	<h1>Reservaciones</h1>
+	<div class="row featurette">
+    	 <div class="col-md-7">
+			<p>Viaje: {{viaje.ruta}}</p>
+			<p>Fecha: {{viaje.fechaSalida}}</p>
+
+			<form id = 'formulario' method = 'post' action = ''> 
+				{% csrf_token %}
+				{{formulario.as_p}}
+				<p><input class="btn btn-primary" type = 'submit' value = 'Confirmar' data-toggle="modal" data-target="#myModal"/></p>
+
+				  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        <h4 class="modal-title" id="myModalLabel">Reservacion Exitosa</h4>
+					      </div>
+					      <div class="modal-body">
+					       <center><h1> Datos de Reservacion</h1></center>
+					       <br>
+					        <p>Viaje: {{viaje.ruta}}</p>
+					        <p>Fecha de salida: {{viaje.fechaSalida}}
+							<br>
+							<br>
+							Por favor guarda la clave que tendras que proporcionar al confirmar tu reservacion. gracias..
+							<center><h1>{{clave}}</h1></center>
+
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					        <button type="submit" class="btn btn-primary" id="modal-form-submit">Guardar</button>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+			</form>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ viaje.ruta.origen.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        	<img class="featurette-image img-responsive img-thumbnail" src="{{MEDIA_URL}}{{ viaje.ruta.destino.imagen }}" alt="Generic placeholder image" width="300px" heigth="150px">
+        </div>
+
+       
+    </div>
+
+
+{%endblock%}
+
+

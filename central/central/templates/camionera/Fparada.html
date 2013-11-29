@@ -1,0 +1,12 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Reservaciones{%endblock%}
+{%block Encabezado%}<center><h1>Llegadas y salidas<h1><center>{%endblock%}
+{%block contenido%}
+
+	<h3>Agregar informacion de llegada y salida del camion</h3>
+	<br>
+	<form id = 'formulario' method = 'post' action = ''> {% csrf_token %}
+	{{formulario.as_p}}
+	<p><input class="btn btn-primary" type = 'submit' value = 'Confirmar'/></p>
+</form>
+{%endblock%}

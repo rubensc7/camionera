@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{%block titulo%}Central Camionera{%endblock%}</title>
+	<link href="/media/css/bootstrap.css" rel="stylesheet">
+  <link href="/media/css/bootstrap2.css" rel="stylesheet">
+  <link href="/media/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/media/css/navbar-fixed-top.css" rel="stylesheet">
+	<script src="/media/js/jquery.js"></script>
+	<script src="/media/js/bootstrap.min.js"></script>
+  <script src="/media/js/transition.js"></script>
+  <script src="/media/css/sticky-footer.css"></script>
+  <script src="/media/js/modal.js"></script>
+  <link rel="shortcut icon" href="/media/img/autobus2.png">
+
+
+
+	<script type="text/javascript">
+    $(document).on('ready',function(){
+          $.ajax({
+              type:"GET",
+              contentType:"application/json; charset=utf-8",
+              dateType:"json",
+              url:"/ws/viajes/",
+              success:function(response){
+                      var i = 0;
+                      for(i;  i<(response.length); i++)
+                      {
+                        $('#proximosViajes').append(response[i].fields.nombre+"-" );
+                        $('#proximosViajes').append(response[i+1].fields.nombre+"<br>");
+                        i++;
+                      }    
+              }
+          });
+        });
+  	</script>
+</head>
+<body>
+
+	 <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Central Camionera</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Inicio</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Formularios <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/altaChofer">Alta de chofer</a></li>
+                <li><a href="/altaCamion">Alta de camión</a></li>
+                <li><a href="/altaViaje">Alta de viaje</a></li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            {%block Encabezado%}
+            {%endblock%}
+          </div>
+          {%block contenido%}
+            {%endblock%}
+
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+
+      		<div class="container-fluid">
+		      <div class="row-fluid">
+		          <div class="well sidebar-nav">
+		            <ul class="nav nav-list" id="proximosViajes">
+		              <li class="nav-header"><center><h4>Proximos Viajes</h4></center></li>
+		            </ul>
+		          </div><!--/.well -->
+		      </div><!--/row-->
+		    </div><!--/.fluid-container-->
+
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Link</a>
+            <a href="/viajesDisponibles" class="list-group-item"><i class="glyphicon glyphicon-star"></i>Viajes Disponibles</a>
+            <a href="/abordar" class="list-group-item">Confirmar reservacion</a>
+            <a href="/ciudades" class="list-group-item">Ciudades</a>
+            <a href="/parada" class="list-group-item">Paradas</a>
+            <a href="/choferes" class="list-group-item">Nuestros Choferes</a>
+            <a href="/camiones" class="list-group-item">Nuestros Camiones</a>
+            <a href="/historialViajes" class="list-group-item">Historial de viajes</a>
+            <a href="/reservaciones" class="list-group-item">Reservaciones</a>
+            <a href="#" class="list-group-item">Link</a>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+</div><!--/.container-->
+      <hr>
+      <div id="footer">
+        <div class="container">
+          <img src="">
+         <center> <p class="text-muted credit">Proyecto realizado por: David Hernandez, Miguel Marin y Ruben Santana</p></center>
+        </div>
+      </div>
+
+
+	
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'home/base.html'%}
+{%block titulo%}Nuevo Viaje{%endblock%}
+{%block Encabezado%}<center><h1>Programar un nuevo viaje<h1><center>{%endblock%}
+{%block contenido%}
+ 
+	<h1>programar un nuevo viaje</h1>
+	<form id = 'formulario' method = 'post' action = '' enctype="multipart/form-data"> 
+		{% csrf_token %}
+		{{formulario.as_p}}
+		<p><input class="btn btn-primary" type = 'submit' value = 'Confirmar' /></p>
+
+		
+	</form>
+{%endblock%}
